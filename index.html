@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>¿Quieres ser mi novia?</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="main-text">¿Quieres ser mi novia?</div>
+    <div id="buttons-container">
+        <button id="yes-button" class="action-button" onclick="showImageSection()">Sí</button>
+        <button id="no-button" class="action-button" onclick="handleNoButtonClick()">No</button>
+    </div>
+
+    <div id="image-section">
+        <div id="image-container">
+            <img src="https://aniyuki.com/wp-content/uploads/2022/03/maxresdefault-1-1024x576.jpg" alt="Imagen">
+            <p>¡SABÍA QUE SÍ QUERÍAS! AHORA YA SOMOS NOVIOS 😍</p>
+        </div>
+    </div>
+
+    <div id="video-section">
+        <div id="video-container">
+            <video id="video-background" controls autoplay>
+                <source src="https://drive.google.com/uc?export=download&id=1T2iRScnx5W-XosiY3BYlTRxa5mc4b7Oa" type="video/mp4">
+                Tu navegador no admite el elemento de video.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        var noButtonClickCount = 0;
+
+        function randomizeNoButtonPosition() {
+            var noButton = document.getElementById("no-button");
+            var x = Math.floor(Math.random() * (window.innerWidth - noButton.clientWidth));
+            var y = Math.floor(Math.random() * (window.innerHeight - noButton.clientHeight));
+            noButton.style.position = "absolute";
+            noButton.style.left = x + "px";
+            noButton.style.top = y + "px";
+        }
+
+        function showImageSection() {
+            document.getElementById("image-section").style.display = "flex";
+            document.getElementById("video-section").style.display = "none";
+            document.getElementById("main-text").style.display = "none";
+            document.getElementById("buttons-container").style.display = "none";
+        }
+
+        function showVideoSection() {
+            var videoSection = document.getElementById("video-section");
+            videoSection.style.display = "flex";
+            document.getElementById("image-section").style.display = "none";
+            document.getElementById("main-text").style.display = "none";
+            document.getElementById("buttons-container").style.display = "block";
+            var video = document.getElementById("video-background");
+            video.play();
+        }
+
+        function handleNoButtonClick() {
+            noButtonClickCount++;
+            if (noButtonClickCount > 2) {
+                showVideoSection();
+            } else {
+                randomizeNoButtonPosition();
+            }
+        }
+    </script>
+</body>
+</html>
